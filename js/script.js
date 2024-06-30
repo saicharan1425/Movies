@@ -38,6 +38,7 @@ async function fetchAPIData(endpoint) {
 async function showPopularMovies() { 
   
   const { results } = await fetchAPIData('movie/popular');
+  console.log(results);
 
   results.forEach(movie => {
 
