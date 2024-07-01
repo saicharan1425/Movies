@@ -17,10 +17,10 @@ function hilightActivelink(){
 //show popular movies
 async function fetchAPIData(endpoint) {
 
-  showSpinner()
-
+  
   const API_URL = 'https://api.themoviedb.org/3/'
   const api_key = 'd432ff1982d50a3d5277edd282d7dc1f'
+  showSpinner()
 
   const response = await fetch(`${API_URL}${endpoint}?api_key=${api_key}&language=en-US`)
 
@@ -33,6 +33,51 @@ async function fetchAPIData(endpoint) {
   
 }
 
+//display slidermovies
+async function displaySlider() {
+  const { results } = await fetchAPIData('movie/now_playing');
+
+  results.forEach((movie) => {
+    const slider = document.createElement('div');
+    slider.classList.add('swiper-slide');
+    slider.innerHTML = `
+            <a href="./routes/movie-details.html?id=${movie.id}">
+              <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" />
+            </a>
+            <h4 class="swiper-rating">
+              <i class="fas fa-star text-secondary"></i> ${movie.vote_average.toFixed(1)} / 10
+            </h4>
+          </div>`;
+    document.querySelector('.swiper-wrapper').appendChild(slider)
+
+    initSwipe()
+  })
+}
+
+function initSwipe() {
+  const swiper = new Swiper('.swiper', {
+    slidersPerView: 1,
+    spaceBetween: 30,
+    freeMode: true,
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false
+    },
+    breakpoints: {
+      500: {
+        slidesPerView :2
+      },
+      700: {
+        slidesPerView : 3
+      },
+      1200: {
+        slidesPerView : 4
+      },
+    }
+  })
+}
+
 //display popular 20 movies
 
 async function showPopularMovies() { 
@@ -40,12 +85,14 @@ async function showPopularMovies() {
   const { results } = await fetchAPIData('movie/popular');
   console.log(results);
 
+  console.log(results);
+
   results.forEach(movie => {
 
     let div = document.createElement('div')
     div.classList.add('card')
     div.innerHTML = `
-        <a href="movie-details.html?id=${movie.id}">
+        <a href="/routes/movie-details.html?id=${movie.id}">
         ${movie.poster_path ? `<img
           src="https://image.tmdb.org/t/p/w500${movie.poster_path}"
           class="card-img-top"
@@ -161,7 +208,6 @@ function hideSpinner() {
 }
     
     
-document.addEventListener('DOMContentLoaded', init)
 
 
 
@@ -260,20 +306,24 @@ function init(){
   switch (global.currentPage){
      case '/':
     case '/index.html':
+      displaySlider()
         showPopularMovies()
         break;
-    case '/shows.html':
+    case '/routes/shows.html':
       showPopularShows()
       break;
-    case '/movie-details.html':
+    case '/routes/movie-details.html':
       displayMovieDetails();
       break;
-    case '/tv-details.html':
+    case '/routes/tv-details.html':
       displayShowDetails();
       break;
-    case '/search.html':
+    case '/routes/search.html':
       console.log('Search');
       break;   
   }
   hilightActivelink()
 }
+
+document.addEventListener('DOMContentLoaded', init)
+

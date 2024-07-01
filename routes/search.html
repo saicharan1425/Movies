@@ -10,12 +10,10 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="lib/swiper.css" />
-    <link rel="stylesheet" href="lib/fontawesome.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/spinner.css" />
-    <script src="lib/swiper.js"></script>
-    <title>Movies</title>
+    <link rel="stylesheet" href="../lib/fontawesome.css" />
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/spinner.css" />
+    <title>Movies | Search Movies & Shows</title>
   </head>
   <body>
     <header class="main-header">
@@ -27,28 +25,18 @@
               <a class="nav-link" href="/">Movies</a>
             </li>
             <li>
-              <a class="nav-link" href="./routes/shows.html">TV Shows</a>
+              <a class="nav-link" href="/shows.html">TV Shows</a>
             </li>
           </ul>
         </nav>
       </div>
     </header>
     
-    <!-- Now Playing Section -->
-    <section class="now-playing">
-      <h2>Now Playing</h2>
-      <div class="swiper">
-        <div class="swiper-wrapper">
-        </div>
-      </div>
-    </section>
-    
     <!-- Search Movies -->
     <section class="search">
       <div class="container">
         <div id="alert"></div>
-        <form action="/routes/search.html" class="search-form">
-          <!-- movies and shows radio box -->
+        <form action="/search.html" class="search-form">
           <div class="search-radio">
             <input type="radio" id="movie" name="type" value="movie" checked />
             <label for="movies">Movies</label>
@@ -70,11 +58,28 @@
       </div>
     </section>
     
-    <!-- Popular Movies -->
-    <section class="container">
-      <h2>Popular Movies</h2>
-      <div id="popular-movies" class="grid">
-        
+    <!-- Search Results -->
+    <section id="search-results-wrapper" class="container">
+      <heading id="search-results-heading"></heading>
+      <div id="search-results" class="grid">
+        <div class="card">
+          <a href="#">
+            <img src="images/no-image.jpg" class="card-img-top" alt="" />
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">Movie Or Show Name</h5>
+            <p class="card-text">
+              <small class="text-muted">Release: XX/XX/XXXX</small>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="pagination">
+        <div class="pagination">
+          <button class="btn btn-primary" id="prev">Prev</button>
+          <button class="btn btn-primary" id="next">Next</button>
+          <div class="page-counter">Page 1 of 5</div>
+        </div>
       </div>
     </section>
     
@@ -97,7 +102,7 @@
           </footer>
           
           <div class="spinner"></div>
-          <script src="./js/script.js"></script>
+          <script src="../js/script.js"></script>
         </body>
         </html>
         
