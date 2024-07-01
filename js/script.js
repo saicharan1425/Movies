@@ -83,6 +83,7 @@ function initSwipe() {
 async function showPopularMovies() { 
   
   const { results } = await fetchAPIData('movie/popular');
+  console.log(results);
 
   console.log(results);
 
@@ -247,8 +248,7 @@ async function showPopularShows() {
 async function displayShowDetails() {
   const showId = window.location.search.split('=')[1];
   
-  const show = await fetchAPIData(`tv/${showId}`)
-  console.log(show);
+  const show = await fetchAPIData(`tv/${showId}`);
 
   //background Image
   backdropImage('tv', show.backdrop_path);
@@ -324,4 +324,6 @@ function init(){
   }
   hilightActivelink()
 }
+
 document.addEventListener('DOMContentLoaded', init)
+
