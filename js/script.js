@@ -1,16 +1,25 @@
 const global = {
-  currentPage : window.location.pathname
+  currentPage: window.location.pathname,
+  search: {
+    term: '',
+    type: '',
+    page: 1,
+    totalPages: 1,
+  }
 };
 
 //Hilight Active Link
 function hilightActivelink(){
   const links = document.querySelectorAll('.nav-link');
   links.forEach((link) => {
+    console.log(link.getAttribute('href'));
     if (link.getAttribute('href') == global.currentPage){
       link.classList.add('active')
     }
   })
 }
+
+console.log(global.currentPage);
 
 
 
@@ -78,14 +87,21 @@ function initSwipe() {
   })
 }
 
+//search movies/shows
+// async function search() {
+//   const 
+// }
+
 //display popular 20 movies
 
 async function showPopularMovies() { 
   
-  const { results } = await fetchAPIData('movie/popular');
-  console.log(results);
+  const popularMovies = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=d432ff1982d50a3d5277edd282d7dc1f');
 
-  console.log(results);
+  const response = await popularMovies.json()
+  
+  const results = await response.results
+    
 
   results.forEach(movie => {
 
@@ -319,11 +335,11 @@ function init(){
       displayShowDetails();
       break;
     case '/routes/search.html':
-      console.log('Search');
+      search();
       break;   
   }
   hilightActivelink()
 }
 
-document.addEventListener('DOMContentLoaded', init)
+init()
 
