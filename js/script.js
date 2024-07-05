@@ -12,14 +12,12 @@ const global = {
 function hilightActivelink(){
   const links = document.querySelectorAll('.nav-link');
   links.forEach((link) => {
-    console.log(link.getAttribute('href'));
     if (link.getAttribute('href') == global.currentPage){
       link.classList.add('active')
     }
   })
 }
 
-console.log(global.currentPage);
 
 
 
@@ -125,7 +123,7 @@ async function showPopularMovies() {
         <p class="card-text">
           <small class="text-muted">Release: ${movie.release_date}</small>
         </p>`;
-
+          console.log(movie.title);
     document.querySelector('#popular-movies').appendChild(div) 
 }); 
 
@@ -231,8 +229,14 @@ function hideSpinner() {
 
 async function showPopularShows() { 
   
-  const { results } = await fetchAPIData('tv/popular');
+  const popularShows = await fetch('https://api.themoviedb.org/3/tv/popular?api_key=d432ff1982d50a3d5277edd282d7dc1f');
 
+  const response = await popularShows.json()
+  
+  
+  const results = await response.results
+
+  
   results.forEach(show => {
 
     let div = document.createElement('div')
@@ -255,7 +259,7 @@ async function showPopularShows() {
         <p class="card-text">
           <small class="text-muted">Release: ${show.first_air_date}</small>
         </p>`;
-
+          console.log(show.name);
         document.querySelector('#popular-shows').appendChild(div) 
 }); 
 
