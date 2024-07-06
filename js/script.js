@@ -346,6 +346,4 @@ function init(){
 }
 
 init()
-showPopularMovies()
-showPopularShows()
 
