@@ -25,12 +25,13 @@ function hilightActivelink(){
 async function fetchAPIData(endpoint) {
 
   
-  const API_URL = 'https://api.themoviedb.org/3/'
-  const api_key = 'd432ff1982d50a3d5277edd282d7dc1f'
-  showSpinner()
+  const API_URL = 'https://api.themoviedb.org/3/';
+  const api_key = 'd432ff1982d50a3d5277edd282d7dc1f';
 
+  
   const response = await fetch(`${API_URL}${endpoint}?api_key=${api_key}&language=en-US`)
-
+  
+  showSpinner()
   
   const data = await response.json();
 
@@ -106,7 +107,7 @@ async function showPopularMovies() {
     let div = document.createElement('div')
     div.classList.add('card')
     div.innerHTML = `
-        <a href="/routes/movie-details.html?id=${movie.id}">
+        <a href="./routes/movie-details.html?id=${movie.id}">
         ${movie.poster_path ? `<img
           src="https://image.tmdb.org/t/p/w500${movie.poster_path}"
           class="card-img-top"
@@ -345,5 +346,5 @@ function init(){
   hilightActivelink()
 }
 
-init()
+document.addEventListener('DOMContentLoaded', init)
 
