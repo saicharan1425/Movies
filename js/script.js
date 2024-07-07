@@ -322,29 +322,39 @@ async function displayShowDetails() {
   document.querySelector('#show-details').appendChild(div)
 }
 
-//Init App
-function init(){
-  switch (global.currentPage){
-     case '/':
-    case '/index.html':
-      displaySlider()
-        showPopularMovies()
-        break;
-    case '/routes/shows.html':
-      showPopularShows()
-      break;
-    case '/routes/movie-details.html':
-      displayMovieDetails();
-      break;
-    case '/routes/tv-details.html':
-      displayShowDetails();
-      break;
-    case '/routes/search.html':
-      search();
-      break;   
-  }
-  hilightActivelink()
-}
+// //Init App
+// function init(){
+//   switch (global.currentPage){
+//      case '/':
+//     case '/index.html':
+//       displaySlider()
+//         showPopularMovies()
+//         break;
+//     case '/routes/shows.html':
+//       showPopularShows()
+//       break;
+//     case '/routes/movie-details.html':
+//       displayMovieDetails();
+//       break;
+//     case '/routes/tv-details.html':
+//       displayShowDetails();
+//       break;
+//     case '/routes/search.html':
+//       search();
+//       break;   
+//   }
+// }
+hilightActivelink()
+
+displaySlider()
+showPopularMovies()
+showPopularShows()
+displayMovieDetails();
+displayShowDetails();
+search();
+
+      
+        
 
 document.addEventListener('DOMContentLoaded', init)
 
